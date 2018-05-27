@@ -16,13 +16,15 @@ class ViewController: UIViewController {
     let currencySymbols : [String] = ["$", "R$", "$", "¥", "€", "£", "$", "Rp", "₪", "₹", "¥", "$", "kr", "$", "zł", "lei", "₽", "kr", "$", "$", "R"]
     let BITCOIN_URL_ROOT : String = "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTC"
     var API_URL : String = ""
-    var currentCurrency : String = ""
+    var chosenCurrency : String = ""
     
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var currencyPicker: UIPickerView!
     
     let bitcoinDataModel = BitcoinDataModel()
     
+    //MARK: - View Lifecycle
+    /*****************************************************************/
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,7 +33,8 @@ class ViewController: UIViewController {
         currencyPicker.dataSource = self
     }
     
-    // Networking
+    //MARK: - Networking
+    /*****************************************************************/
     func getBitcoinPrice(url: String) {
         if API_URL == BITCOIN_URL_ROOT {
             priceLabel.text = ""
@@ -52,6 +55,8 @@ class ViewController: UIViewController {
         }
     }
 
+    //MARK: - PARSING
+    /*****************************************************************/
     // parse the JSON for desired information
     func updateBitcoinData(data: JSON) {
         print(data)
@@ -59,7 +64,7 @@ class ViewController: UIViewController {
         if let hourPriceResult : Double = data["open"]["hour"].double {
             bitcoinDataModel.priceThisHour = hourPriceResult
             bitcoinDataModel.percentChangeThisHour = data["changes"]["percent"]["hour"].doubleValue
-            bitcoinDataModel.currencySymbol = currentCurrency
+            bitcoinDataModel.currencySymbol = chosenCurrency
             updateUI()
         }
         else {
@@ -105,7 +110,7 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     // prints the currency in the row currently selected within the UIPicker
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         API_URL = BITCOIN_URL_ROOT + currencies[row]
-        currentCurrency = currencySymbols[row]
+        chosenCurrency = currencySymbols[row]
         print("API_URL is now: \(API_URL)")
         getBitcoinPrice(url: API_URL)
     }
