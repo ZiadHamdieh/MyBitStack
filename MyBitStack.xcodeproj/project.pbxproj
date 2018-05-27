@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		9905F99B20BA8524003E372D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9905F99A20BA8524003E372D /* AppDelegate.swift */; };
 		9905F99D20BA8524003E372D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9905F99C20BA8524003E372D /* ViewController.swift */; };
-		9905F9A020BA8524003E372D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9905F99E20BA8524003E372D /* Main.storyboard */; };
 		9905F9A220BA8525003E372D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9905F9A120BA8525003E372D /* Assets.xcassets */; };
 		9905F9A520BA8525003E372D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9905F9A320BA8525003E372D /* LaunchScreen.storyboard */; };
+		99C98A8E20BA8C020027D7C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99C98A8D20BA8C020027D7C4 /* Main.storyboard */; };
 		F42AA48C62133D2DA50C4C5D /* Pods_MyBitStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03802BC1264DF7C567732828 /* Pods_MyBitStack.framework */; };
 /* End PBXBuildFile section */
 
@@ -21,10 +21,10 @@
 		9905F99720BA8524003E372D /* MyBitStack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyBitStack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9905F99A20BA8524003E372D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9905F99C20BA8524003E372D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		9905F99F20BA8524003E372D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9905F9A120BA8525003E372D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9905F9A420BA8525003E372D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9905F9A620BA8525003E372D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		99C98A8D20BA8C020027D7C4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		ED58E103E617859083C2F8E6 /* Pods-MyBitStack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyBitStack.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyBitStack/Pods-MyBitStack.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,8 +71,8 @@
 			children = (
 				9905F99A20BA8524003E372D /* AppDelegate.swift */,
 				9905F99C20BA8524003E372D /* ViewController.swift */,
-				9905F99E20BA8524003E372D /* Main.storyboard */,
 				9905F9A120BA8525003E372D /* Assets.xcassets */,
+				99C98A8D20BA8C020027D7C4 /* Main.storyboard */,
 				9905F9A320BA8525003E372D /* LaunchScreen.storyboard */,
 				9905F9A620BA8525003E372D /* Info.plist */,
 			);
@@ -148,9 +148,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99C98A8E20BA8C020027D7C4 /* Main.storyboard in Resources */,
 				9905F9A520BA8525003E372D /* LaunchScreen.storyboard in Resources */,
 				9905F9A220BA8525003E372D /* Assets.xcassets in Resources */,
-				9905F9A020BA8524003E372D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,14 +212,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		9905F99E20BA8524003E372D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9905F99F20BA8524003E372D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		9905F9A320BA8525003E372D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
