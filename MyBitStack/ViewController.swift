@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class ViewController: UIViewController {
     
     let currencies : [String] = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
     let currencySymbols : [String] = ["$", "R$", "$", "¥", "€", "£", "$", "Rp", "₪", "₹", "¥", "$", "kr", "$", "zł", "lei", "₽", "kr", "$", "$", "R"]
@@ -30,34 +30,6 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         currencyPicker.delegate = self
         currencyPicker.dataSource = self
     }
-    
-    // UIPicker
-    
-    // number of columns in the UIPicker
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    // number of rows in the UIPicker is equal to the number of elements in the
-    // currency array
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return currencies.count
-    }
-    
-    // place each element in the currency array into its respective row within the UIPicker
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return currencies[row]
-    }
-    
-    // prints the currency in the row currently selected within the UIPicker
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        API_URL = BITCOIN_URL_ROOT + currencies[row]
-        currentCurrency = currencySymbols[row]
-        print("API_URL is now: \(API_URL)")
-        getBitcoinPrice(url: API_URL)
-    }
-    
-    
     
     // Networking
     func getBitcoinPrice(url: String) {
@@ -97,6 +69,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
     func updateUI() {
+        
         priceLabel.text = "\(bitcoinDataModel.currencySymbol)\(bitcoinDataModel.priceThisHour)"
         print("price change since last hour : \(bitcoinDataModel.percentChangeThisHour)")
         // if bitcoin prices have fallen since last hour, display in red
@@ -111,3 +84,30 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
 }
 
+extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    
+    // number of columns in the UIPicker
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    // number of rows in the UIPicker is equal to the number of elements in the
+    // currency array
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return currencies.count
+    }
+    
+    // place each element in the currency array into its respective row within the UIPicker
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return currencies[row]
+    }
+    
+    // prints the currency in the row currently selected within the UIPicker
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        API_URL = BITCOIN_URL_ROOT + currencies[row]
+        currentCurrency = currencySymbols[row]
+        print("API_URL is now: \(API_URL)")
+        getBitcoinPrice(url: API_URL)
+    }
+    
+}
