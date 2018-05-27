@@ -13,6 +13,23 @@ import SVProgressHUD
 
 class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
+    let currencies : [String] = ["hello", "world", "CAD"]
+    let BITCOIN_URL_ROOT : String = "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTC"
+    var API_URL : String = ""
+    
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var currencyPicker: UIPickerView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // set this class as the delegate for UIPicker
+        currencyPicker.delegate = self
+        currencyPicker.dataSource = self
+    }
+    
+    // UIPicker
+    
     // number of columns in the UIPicker
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -29,42 +46,54 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         return currencies[row]
     }
     
-    
-    let currencies : [String] = ["hello", "world", "test"]
-    let BITCOIN_URL : String = "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTC"
-    
-    @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var currencyPicker: UIPickerView!
-    
-    // Networking
-    func getBitcoinData() {
-        
+    // prints the currency in the row currently selected within the UIPicker
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        API_URL = BITCOIN_URL_ROOT + currencies[row]
+        print("API_URL is now: \(API_URL)")
+        getBitcoinPrice(url: API_URL)
     }
     
-    func updateBitcoinData() {
+    
+    
+    // Networking
+    func getBitcoinPrice(url: String) {
+        Alamofire.request(url, method: .get).responseJSON {
+            response in
+            if response.result.isSuccess {
+                print("bitcoin prices successfully retrieved!")
+                let bitcoinJSON : JSON = JSON(response.result.value)
+                self.updateBitcoinData(data: bitcoinJSON)
+            }
+            else {
+                print("count not get bitcoin data")
+                self.priceLabel.text = "Could Not Fetch Data"
+            }
+        }
+    }
+
+    // parse the JSON for required information
+    func updateBitcoinData(data: JSON) {
+        print(data)
+        // optional binding used here to avoid force unwrapping
+        if let priceThisHour = data["open"]["hour"].double {
+            updateUI()
+        }
+        else {
+            print("Bitcoin prices currently unavailable")
+            priceLabel.text = "Prices Unavailable"
+        }
+        
     }
     
     func updateUI() {
-        priceLabel.text = ""
     }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
         
-        // set this class as the delegate for UIPicker
-        currencyPicker.delegate = self
-        currencyPicker.dataSource = self
-        
-        
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+//    }
+//
+//    override func didReceiveMemoryWarning() {
+//        super.didReceiveMemoryWarning()
+//        // Dispose of any resources that can be recreated.
+//    }
 
 }
 
