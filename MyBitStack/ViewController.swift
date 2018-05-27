@@ -9,16 +9,17 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import SVProgressHUD
 
 class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    let currencies : [String] = ["hello", "world", "CAD"]
+    let currencies : [String] = ["", "CAD", "USD", "Foo"]
     let BITCOIN_URL_ROOT : String = "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTC"
     var API_URL : String = ""
     
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var currencyPicker: UIPickerView!
+    
+    let bitcoinDataModel = BitcoinDataModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,43 +58,52 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     // Networking
     func getBitcoinPrice(url: String) {
-        Alamofire.request(url, method: .get).responseJSON {
-            response in
-            if response.result.isSuccess {
-                print("bitcoin prices successfully retrieved!")
-                let bitcoinJSON : JSON = JSON(response.result.value)
-                self.updateBitcoinData(data: bitcoinJSON)
-            }
-            else {
-                print("count not get bitcoin data")
-                self.priceLabel.text = "Could Not Fetch Data"
+        if API_URL == BITCOIN_URL_ROOT {
+            priceLabel.text = ""
+        }
+        else {
+            Alamofire.request(url, method: .get).responseJSON {
+                response in
+                if response.result.isSuccess {
+                    print("bitcoin prices successfully retrieved!")
+                    let bitcoinJSON : JSON = JSON(response.result.value!)
+                    self.updateBitcoinData(data: bitcoinJSON)
+                }
+                else {
+                    print("coult not get bitcoin data")
+                    self.priceLabel.text = "Fetch Error"
+                }
             }
         }
     }
 
-    // parse the JSON for required information
+    // parse the JSON for desired information
     func updateBitcoinData(data: JSON) {
         print(data)
         // optional binding used here to avoid force unwrapping
-        if let priceThisHour = data["open"]["hour"].double {
+        if let hourPriceResult : Double = data["open"]["hour"].double {
+            bitcoinDataModel.priceThisHour = hourPriceResult
+            bitcoinDataModel.percentChangeThisHour = data["changes"]["percent"]["hour"].doubleValue
             updateUI()
         }
         else {
             print("Bitcoin prices currently unavailable")
-            priceLabel.text = "Prices Unavailable"
+            priceLabel.text = "Unavailable"
         }
-        
     }
     
     func updateUI() {
+        priceLabel.text = "\(bitcoinDataModel.priceThisHour)"
+        print("price change since last hour : \(bitcoinDataModel.percentChangeThisHour)")
+        // if bitcoin prices have fallen since last hour, display in red
+        if bitcoinDataModel.percentChangeThisHour < 0 {
+            priceLabel.textColor = UIColor.red
+        }
+        // else display value in green
+        else if bitcoinDataModel.percentChangeThisHour > 0{
+            priceLabel.textColor = UIColor.green
+        }
     }
-        
-//    }
-//
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//        // Dispose of any resources that can be recreated.
-//    }
-
+    
 }
 
