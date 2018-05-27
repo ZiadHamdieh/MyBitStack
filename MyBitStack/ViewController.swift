@@ -12,9 +12,11 @@ import SwiftyJSON
 
 class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    let currencies : [String] = ["", "CAD", "USD", "Foo"]
+    let currencies : [String] = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
+    let currencySymbols : [String] = ["$", "R$", "$", "¥", "€", "£", "$", "Rp", "₪", "₹", "¥", "$", "kr", "$", "zł", "lei", "₽", "kr", "$", "$", "R"]
     let BITCOIN_URL_ROOT : String = "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTC"
     var API_URL : String = ""
+    var currentCurrency : String = ""
     
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var currencyPicker: UIPickerView!
@@ -50,6 +52,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     // prints the currency in the row currently selected within the UIPicker
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         API_URL = BITCOIN_URL_ROOT + currencies[row]
+        currentCurrency = currencySymbols[row]
         print("API_URL is now: \(API_URL)")
         getBitcoinPrice(url: API_URL)
     }
@@ -84,6 +87,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         if let hourPriceResult : Double = data["open"]["hour"].double {
             bitcoinDataModel.priceThisHour = hourPriceResult
             bitcoinDataModel.percentChangeThisHour = data["changes"]["percent"]["hour"].doubleValue
+            bitcoinDataModel.currencySymbol = currentCurrency
             updateUI()
         }
         else {
@@ -93,7 +97,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
     func updateUI() {
-        priceLabel.text = "\(bitcoinDataModel.priceThisHour)"
+        priceLabel.text = "\(bitcoinDataModel.currencySymbol)\(bitcoinDataModel.priceThisHour)"
         print("price change since last hour : \(bitcoinDataModel.percentChangeThisHour)")
         // if bitcoin prices have fallen since last hour, display in red
         if bitcoinDataModel.percentChangeThisHour < 0 {

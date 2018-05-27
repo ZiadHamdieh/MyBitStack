@@ -12,6 +12,7 @@ class BitcoinDataModel {
     
     var priceThisHour : Double = 0.00
     var percentChangeThisHour : Double = 0.00
+    var currencySymbol : String = ""
     
 }
 
