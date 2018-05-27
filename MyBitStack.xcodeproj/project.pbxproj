@@ -69,14 +69,38 @@
 		9905F99920BA8524003E372D /* MyBitStack */ = {
 			isa = PBXGroup;
 			children = (
-				9905F99A20BA8524003E372D /* AppDelegate.swift */,
-				9905F99C20BA8524003E372D /* ViewController.swift */,
+				99C98A9120BA90AE0027D7C4 /* Model */,
+				99C98A9020BA90A90027D7C4 /* View */,
+				99C98A8F20BA90A10027D7C4 /* Controller */,
 				9905F9A120BA8525003E372D /* Assets.xcassets */,
-				99C98A8D20BA8C020027D7C4 /* Main.storyboard */,
 				9905F9A320BA8525003E372D /* LaunchScreen.storyboard */,
 				9905F9A620BA8525003E372D /* Info.plist */,
 			);
 			path = MyBitStack;
+			sourceTree = "<group>";
+		};
+		99C98A8F20BA90A10027D7C4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9905F99A20BA8524003E372D /* AppDelegate.swift */,
+				9905F99C20BA8524003E372D /* ViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		99C98A9020BA90A90027D7C4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				99C98A8D20BA8C020027D7C4 /* Main.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		99C98A9120BA90AE0027D7C4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		A44B70FB1B72E0F13E13E6D8 /* Pods */ = {
