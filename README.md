@@ -6,10 +6,8 @@
 #### Features
 
 #### Screenshots
-<img src="Demo/sun_C2.png" width="40%"> <img src="Demo/sun_F.png" width="40%" align="right">
-<img src="Demo/rain.png" width="40%"> <img src="Demo/snow.png" width="40%" align="right">
-<img src="Demo/fog.png" width="40%"><img src="Demo/invalidCity.png" width="40%" align="right">
-<img src="Demo/changeCity.png" width="40%">
+<img src="Screenshots/increase.png" width="40%"> <img src="Screenshots/decrease.png" width="40%" align="right">
+<img src="Screenshots/error.png" width="40%">
 
 #### Instructions
 
