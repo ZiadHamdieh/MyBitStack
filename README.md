@@ -3,7 +3,7 @@
 # MyBitStack - v1.0 
 ### A Bitcoin Tracking iOS application
 
-that uses bitcoinaverage.com's API to fetch data on the current value of the Bitcoin cryptocurrency.
+Single-View iOS application that uses bitcoinaverage.com's API to fetch data on the current value of the Bitcoin cryptocurrency.
 
 #### Features
 * Real-time updates on current value of Bitcoin
