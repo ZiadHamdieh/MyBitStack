@@ -14,10 +14,12 @@ class ViewController: UIViewController {
     
     let currencies = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","ILS","INR","JPY","MXN","NOK","NZD","PLN","RUB","SEK","SGD","USD","ZAR"]
     let currencySymbols = ["$", "R$", "$", "¥", "€", "£", "$", "₪", "₹", "¥", "$", "kr", "$", "zł", "₽", "kr", "$", "$", "R"]
-    let BITCOIN_URL_ROOT = "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTC"
+    let BITCOIN_URL_ROOT = "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTC2"
     var API_URL = ""
     var chosenCurrency = ""
     
+    
+    @IBOutlet weak var percentageChangeLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var currencyPicker: UIPickerView!
     
@@ -61,7 +63,7 @@ class ViewController: UIViewController {
         // optional binding used here to avoid forced unwrapping
         if let hourPriceResult = data["open"]["hour"].double {
             bitcoinDataModel.priceThisHour = hourPriceResult
-            bitcoinDataModel.percentChangeThisHour = data["changes"]["percent"]["hour"].doubleValue
+            bitcoinDataModel.percentChange = data["changes"]["percent"]["hour"].doubleValue
             bitcoinDataModel.currencySymbol = chosenCurrency
             updateUI()
         }
@@ -72,16 +74,19 @@ class ViewController: UIViewController {
     }
     
     func updateUI() {
-        
-        priceLabel.text = "\(bitcoinDataModel.currencySymbol)\(bitcoinDataModel.priceThisHour)"
         // if bitcoin prices have fallen since last hour, display in red
-        if bitcoinDataModel.percentChangeThisHour < 0 {
+        if bitcoinDataModel.percentChange < 0 {
             priceLabel.textColor = .red
+            percentageChangeLabel.textColor = .red
+            percentageChangeLabel.text = "-\(bitcoinDataModel.percentChange)%"
         }
         // else display value in green
-        else if bitcoinDataModel.percentChangeThisHour > 0{
+        else if bitcoinDataModel.percentChange > 0 {
             priceLabel.textColor = .green
+            percentageChangeLabel.textColor = .green
+            percentageChangeLabel.text = "+\(bitcoinDataModel.percentChange)%"
         }
+        priceLabel.text = "\(bitcoinDataModel.currencySymbol)\(bitcoinDataModel.priceThisHour)"
     }
     
 }
@@ -122,7 +127,7 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         else {
             label = UILabel()
         }
-        label.textColor = UIColor.white
+        label.textColor = .white
         label.textAlignment = .center
         label.font = UIFont(name: "Menlo-Regular", size: 22)
         
