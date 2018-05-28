@@ -4,10 +4,17 @@
 ### A Bitcoin Tracking iOS application
 
 #### Features
+* Real-time updates on current value of Bitcoin
+* Choice of 19 currencies (including USD, CAD, EUR, GBP)
+* Percentage increase/decrease since last hour
 
 #### Screenshots
 <img src="Screenshots/increase.png" width="40%"> <img src="Screenshots/decrease.png" width="40%" align="right">
 <img src="Screenshots/error.png" width="40%">
+
+#### Upcoming Features
+* Toggle between hourly, daily, and weekly updates
+* Set a favorite currency with one click
 
 #### Instructions
 
