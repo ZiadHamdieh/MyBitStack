@@ -12,8 +12,8 @@ import SwiftyJSON
 
 class ViewController: UIViewController {
     
-    let currencies = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
-    let currencySymbols = ["$", "R$", "$", "¥", "€", "£", "$", "Rp", "₪", "₹", "¥", "$", "kr", "$", "zł", "lei", "₽", "kr", "$", "$", "R"]
+    let currencies = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","ILS","INR","JPY","MXN","NOK","NZD","PLN","RUB","SEK","SGD","USD","ZAR"]
+    let currencySymbols = ["$", "R$", "$", "¥", "€", "£", "$", "₪", "₹", "¥", "$", "kr", "$", "zł", "₽", "kr", "$", "$", "R"]
     let BITCOIN_URL_ROOT = "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTC"
     var API_URL = ""
     var chosenCurrency = ""
@@ -43,7 +43,6 @@ class ViewController: UIViewController {
             Alamofire.request(url, method: .get).responseJSON {
                 response in
                 if response.result.isSuccess {
-                    print("bitcoin prices successfully retrieved!")
                     let bitcoinJSON : JSON = JSON(response.result.value!)
                     self.updateBitcoinData(data: bitcoinJSON)
                 }
@@ -59,7 +58,6 @@ class ViewController: UIViewController {
     /*****************************************************************/
     // parse the JSON for desired information
     func updateBitcoinData(data: JSON) {
-        print(data)
         // optional binding used here to avoid forced unwrapping
         if let hourPriceResult = data["open"]["hour"].double {
             bitcoinDataModel.priceThisHour = hourPriceResult
@@ -76,14 +74,13 @@ class ViewController: UIViewController {
     func updateUI() {
         
         priceLabel.text = "\(bitcoinDataModel.currencySymbol)\(bitcoinDataModel.priceThisHour)"
-        print("price change since last hour : \(bitcoinDataModel.percentChangeThisHour)")
         // if bitcoin prices have fallen since last hour, display in red
         if bitcoinDataModel.percentChangeThisHour < 0 {
-            priceLabel.textColor = UIColor.red
+            priceLabel.textColor = .red
         }
         // else display value in green
         else if bitcoinDataModel.percentChangeThisHour > 0{
-            priceLabel.textColor = UIColor.green
+            priceLabel.textColor = .green
         }
     }
     
@@ -111,7 +108,6 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         API_URL = BITCOIN_URL_ROOT + currencies[row]
         chosenCurrency = currencySymbols[row]
-        print("API_URL is now: \(API_URL)")
         getBitcoinPrice(url: API_URL)
         
     }
@@ -128,7 +124,7 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         }
         label.textColor = UIColor.white
         label.textAlignment = .center
-        label.font = UIFont(name: "Menlo-Regular", size: 27)
+        label.font = UIFont(name: "Menlo-Regular", size: 22)
         
         label.text = currencies[row]
         
