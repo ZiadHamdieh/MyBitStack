@@ -91,7 +91,7 @@ class ViewController: UIViewController {
 
 extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
-    // number of columns in the UIPicker
+    // returns the number of columns in the UIPicker
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -107,12 +107,32 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         return currencies[row]
     }
     
-    // prints the currency in the row currently selected within the UIPicker
+    // print the currency in the row currently selected within the UIPicker
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         API_URL = BITCOIN_URL_ROOT + currencies[row]
         chosenCurrency = currencySymbols[row]
         print("API_URL is now: \(API_URL)")
         getBitcoinPrice(url: API_URL)
+        
+    }
+    
+    // change color of each row to white
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        var label : UILabel
+        
+        if let view = view as? UILabel {
+            label = view
+        }
+        else {
+            label = UILabel()
+        }
+        label.textColor = UIColor.white
+        label.textAlignment = .center
+        label.font = UIFont(name: "Menlo-Regular", size: 27)
+        
+        label.text = currencies[row]
+        
+        return label
     }
     
 }
