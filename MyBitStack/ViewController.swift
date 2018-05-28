@@ -12,11 +12,11 @@ import SwiftyJSON
 
 class ViewController: UIViewController {
     
-    let currencies : [String] = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
-    let currencySymbols : [String] = ["$", "R$", "$", "¥", "€", "£", "$", "Rp", "₪", "₹", "¥", "$", "kr", "$", "zł", "lei", "₽", "kr", "$", "$", "R"]
-    let BITCOIN_URL_ROOT : String = "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTC"
-    var API_URL : String = ""
-    var chosenCurrency : String = ""
+    let currencies = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
+    let currencySymbols = ["$", "R$", "$", "¥", "€", "£", "$", "Rp", "₪", "₹", "¥", "$", "kr", "$", "zł", "lei", "₽", "kr", "$", "$", "R"]
+    let BITCOIN_URL_ROOT = "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTC"
+    var API_URL = ""
+    var chosenCurrency = ""
     
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var currencyPicker: UIPickerView!
@@ -60,8 +60,8 @@ class ViewController: UIViewController {
     // parse the JSON for desired information
     func updateBitcoinData(data: JSON) {
         print(data)
-        // optional binding used here to avoid force unwrapping
-        if let hourPriceResult : Double = data["open"]["hour"].double {
+        // optional binding used here to avoid forced unwrapping
+        if let hourPriceResult = data["open"]["hour"].double {
             bitcoinDataModel.priceThisHour = hourPriceResult
             bitcoinDataModel.percentChangeThisHour = data["changes"]["percent"]["hour"].doubleValue
             bitcoinDataModel.currencySymbol = chosenCurrency
