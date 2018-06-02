@@ -68,7 +68,7 @@ class ViewController: UIViewController {
         }
     }
 
-    //MARK: - PARSING
+    //MARK: - JSON Parsing
     /*****************************************************************/
     
     func updateBitcoinData(data: JSON) {
@@ -88,6 +88,10 @@ class ViewController: UIViewController {
             
         }
     }
+    
+    //MARK: - UI Update
+    /*****************************************************************/
+    
     
     func updateUI() {
         // if bitcoin prices have fallen since last hour, display in red
@@ -112,6 +116,9 @@ class ViewController: UIViewController {
     }
     
 }
+
+//MARK: - Protocol Delegates
+/*****************************************************************/
 
 extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
