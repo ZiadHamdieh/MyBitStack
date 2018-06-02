@@ -41,14 +41,17 @@ class ViewController: UIViewController {
     /*****************************************************************/
     
     func getBitcoinPrice(url: String) {
+        
         if API_URL == BITCOIN_URL_ROOT {
             
             priceLabel.text = ""
             
         }
         else {
+            
             Alamofire.request(url, method: .get).responseJSON {
                 response in
+                
                 if response.result.isSuccess {
                     
                     let bitcoinJSON : JSON = JSON(response.result.value!)
