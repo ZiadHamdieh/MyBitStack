@@ -102,7 +102,7 @@
                     </view>
                     <connections>
                         <outlet property="currencyPicker" destination="ZGz-pe-AwG" id="h6L-ys-ODM"/>
-                        <outlet property="percentageChangeLabel" destination="Vsb-e0-8MA" id="rsu-I5-Ecn"/>
+                        <outlet property="priceChangeLabel" destination="Vsb-e0-8MA" id="tyb-Un-Psq"/>
                         <outlet property="priceLabel" destination="Jg7-Dt-rnc" id="SgM-Rx-TZl"/>
                         <outlet property="timeFrameSegment" destination="dXL-ln-gMM" id="0Ng-TK-vAw"/>
                     </connections>

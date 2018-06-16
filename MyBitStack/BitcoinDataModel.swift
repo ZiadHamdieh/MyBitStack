@@ -10,10 +10,13 @@ import UIKit
 
 struct BitcoinDataModel {
     
-    // [Price this hour, Price Today, Price this week ]
+    // [Price this HOUR, Price TODAY, Price this WEEK]
     var price : [Double] = [0.00, 0.00, 0.00]
     
-    // [% change this hour, % change today, % change this week]
+    // [Price change this HOUR, Price change TODAY, Price change this WEEK]
+    var priceChange : [Double] = [0.00, 0.00, 0,00]
+    
+    // [% change this HOUR, % change TODAY, % change this WEEK]
     var percentChange : [Double] = [0.00, 0.00, 0.00]
     
     var currencySymbol = ""

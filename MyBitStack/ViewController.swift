@@ -21,7 +21,8 @@ class ViewController: UIViewController {
     var bitcoinDataModel = BitcoinDataModel()
     
     
-    @IBOutlet weak var percentageChangeLabel: UILabel!
+    
+    @IBOutlet weak var priceChangeLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var currencyPicker: UIPickerView!
     @IBOutlet weak var timeFrameSegment: UISegmentedControl!
@@ -89,6 +90,10 @@ class ViewController: UIViewController {
             bitcoinDataModel.price[1] = dayPriceResult
             bitcoinDataModel.price[2] = weekPriceResult
             
+            bitcoinDataModel.priceChange[0] = data["changes"]["price"]["hour"].doubleValue
+            bitcoinDataModel.priceChange[1] = data["changes"]["price"]["day"].doubleValue
+            bitcoinDataModel.priceChange[2] = data["changes"]["price"]["week"].doubleValue
+            
             bitcoinDataModel.percentChange[0] = data["changes"]["percent"]["hour"].doubleValue
             bitcoinDataModel.percentChange[1] = data["changes"]["percent"]["day"].doubleValue
             bitcoinDataModel.percentChange[2] = data["changes"]["percent"]["week"].doubleValue
@@ -96,6 +101,7 @@ class ViewController: UIViewController {
             bitcoinDataModel.currencySymbol = chosenCurrency
             
             updateUI(selectedTimeFrame: timeFrameSegment.selectedSegmentIndex)
+            
         }
         else {
             
@@ -115,16 +121,16 @@ class ViewController: UIViewController {
         if bitcoinDataModel.percentChange[selectedTimeFrame] < 0 {
             
             priceLabel.textColor = .red
-            percentageChangeLabel.textColor = .red
-            percentageChangeLabel.text = "\(bitcoinDataModel.percentChange[selectedTimeFrame])%"
+            priceChangeLabel.textColor = .red
+            priceChangeLabel.text = "\(bitcoinDataModel.currencySymbol)\(bitcoinDataModel.priceChange[selectedTimeFrame]) (\(bitcoinDataModel.percentChange[selectedTimeFrame])%)"
             
         }
         // else display value in green
         else if bitcoinDataModel.percentChange[selectedTimeFrame] > 0 {
             
             priceLabel.textColor = .green
-            percentageChangeLabel.textColor = .green
-            percentageChangeLabel.text = "+\(bitcoinDataModel.percentChange[selectedTimeFrame])%"
+            priceChangeLabel.textColor = .green
+            priceChangeLabel.text = "+\(bitcoinDataModel.currencySymbol)\(bitcoinDataModel.priceChange[selectedTimeFrame]) (+\(bitcoinDataModel.percentChange[selectedTimeFrame])%)"
             
         }
         
