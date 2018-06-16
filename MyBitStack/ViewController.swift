@@ -18,20 +18,20 @@ class ViewController: UIViewController {
     var API_URL = ""
     var chosenCurrency = ""
     
+    let bitcoinDataModel = BitcoinDataModel()
+    
     
     @IBOutlet weak var percentageChangeLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var currencyPicker: UIPickerView!
     @IBOutlet weak var timeFrameSegment: UISegmentedControl!
     
-    
+    //MARK: - IBActions
+    /*****************************************************************/
     @IBAction func timeFrameSegmentPressed(_ sender: UISegmentedControl) {
         updateUI(selectedTimeFrame: timeFrameSegment.selectedSegmentIndex);
     }
     
-    
-    
-    let bitcoinDataModel = BitcoinDataModel()
     
     //MARK: - View Lifecycle
     /*****************************************************************/
