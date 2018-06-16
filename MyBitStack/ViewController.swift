@@ -27,6 +27,27 @@ class ViewController: UIViewController {
     
     @IBAction func timeFrameSegmentPressed(_ sender: UISegmentedControl) {
         
+        switch timeFrameSegment.selectedSegmentIndex {
+        case 0:
+            
+            priceLabel.text = "\(bitcoinDataModel.currencySymbol)\(bitcoinDataModel.priceThisHour)"
+            break
+            
+        case 1:
+            
+            priceLabel.text = "\(bitcoinDataModel.currencySymbol)\(bitcoinDataModel.priceToday)"
+            break
+            
+        case 2:
+            priceLabel.text = "\(bitcoinDataModel.currencySymbol)\(bitcoinDataModel.priceThisWeek)"
+            break
+            
+        default:
+            
+            print("error. Selected segment index is out of bounds")
+            break
+            
+        }
     }
     
     
@@ -82,32 +103,20 @@ class ViewController: UIViewController {
     
     func updateBitcoinData(data: JSON) {
         // optional binding used here to avoid forced unwrapping
-        if let hourPriceResult = data["open"]["hour"].double {
+        if let hourPriceResult = data["open"]["hour"].double, let weekPriceResult = data["open"]["week"].double,
+            let dayPriceResult = data["open"]["day"].double {
             
-            if timeFrameSegment.isEnabledForSegment(at: 0) {
-             
-                bitcoinDataModel.priceThisHour = hourPriceResult
-                bitcoinDataModel.percentChange = data["changes"]["percent"]["hour"].doubleValue
-                
-            }
-            else if timeFrameSegment.isEnabledForSegment(at: 1) {
-                
-                let dayPriceResult = data["open"]["day"].double!
-                bitcoinDataModel.priceToday = dayPriceResult
-                bitcoinDataModel.percentChange = data["changes"]["percent"]["day"].doubleValue
-                
-            }
-            else if timeFrameSegment.isEnabledForSegment(at: 2) {
-                
-                let weekPriceResult = data["open"]["week"].double!
-                bitcoinDataModel.priceThisWeek = weekPriceResult
-                bitcoinDataModel.percentChange = data["changes"]["percent"]["week"].doubleValue
-                
-            }
+            bitcoinDataModel.priceThisHour = hourPriceResult
+            bitcoinDataModel.priceToday = dayPriceResult
+            bitcoinDataModel.priceThisWeek = weekPriceResult
+            
+            bitcoinDataModel.hourPercentChange = data["changes"]["percent"]["hour"].doubleValue
+            bitcoinDataModel.dayPercentChange = data["changes"]["percent"]["day"].doubleValue
+            bitcoinDataModel.weekPercentChange = data["changes"]["percent"]["week"].doubleValue
             
             bitcoinDataModel.currencySymbol = chosenCurrency
-            updateUI()
             
+            updateUI(selectedSegment: timeFrameSegment.selectedSegmentIndex)
         }
         else {
             
@@ -121,13 +130,14 @@ class ViewController: UIViewController {
     /*****************************************************************/
     
     
-    func updateUI() {
-        // if bitcoin prices have fallen since last hour, display in red
-        if bitcoinDataModel.percentChange < 0 {
+    func updateUI(selectedSegment: Int) {
+        
+        // if bitcoin prices have fallen since last time period, display in red
+        if bitcoinDataModel.percentChange[selectedSegment] < 0 {
             
             priceLabel.textColor = .red
             percentageChangeLabel.textColor = .red
-            percentageChangeLabel.text = "-\(bitcoinDataModel.percentChange)%"
+            percentageChangeLabel.text = "-\(bitcoinDataModel.percentChange[selectedSegment])%"
             
         }
         // else display value in green
@@ -135,11 +145,12 @@ class ViewController: UIViewController {
             
             priceLabel.textColor = .green
             percentageChangeLabel.textColor = .green
-            percentageChangeLabel.text = "+\(bitcoinDataModel.percentChange)%"
+            percentageChangeLabel.text = "+\(bitcoinDataModel.percentChange[selectedSegment)%"
             
         }
         
-        priceLabel.text = "\(bitcoinDataModel.currencySymbol)\(bitcoinDataModel.priceThisHour)"
+        
+        priceLabel.text = "\(bitcoinDataModel.currencySymbol)\(bitcoinDataModel.price[selectedSegment])"
         
     }
     

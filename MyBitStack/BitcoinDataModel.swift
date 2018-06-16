@@ -10,11 +10,10 @@ import UIKit
 
 class BitcoinDataModel {
     
-    var priceThisHour : Double = 0.00
-    var priceToday : Double = 0.00
-    var priceThisWeek : Double = 0.00
-    var percentChange : Double = 0.00
-    var currencySymbol = ""
+    var price : [Double] = []
+    var percentChange : [Double] = []
     
+    var currencySymbol = ""
+
 }
 
