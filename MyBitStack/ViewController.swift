@@ -90,9 +90,9 @@ class ViewController: UIViewController {
             bitcoinDataModel.price[1] = dayPriceResult
             bitcoinDataModel.price[2] = weekPriceResult
             
-            bitcoinDataModel.priceChange[0] = data["changes"]["price"]["hour"].doubleValue
-            bitcoinDataModel.priceChange[1] = data["changes"]["price"]["day"].doubleValue
-            bitcoinDataModel.priceChange[2] = data["changes"]["price"]["week"].doubleValue
+            bitcoinDataModel.priceChange[0] = abs(data["changes"]["price"]["hour"].doubleValue)
+            bitcoinDataModel.priceChange[1] = abs(data["changes"]["price"]["day"].doubleValue)
+            bitcoinDataModel.priceChange[2] = abs(data["changes"]["price"]["week"].doubleValue)
             
             bitcoinDataModel.percentChange[0] = data["changes"]["percent"]["hour"].doubleValue
             bitcoinDataModel.percentChange[1] = data["changes"]["percent"]["day"].doubleValue
@@ -122,7 +122,7 @@ class ViewController: UIViewController {
             
             priceLabel.textColor = .red
             priceChangeLabel.textColor = .red
-            priceChangeLabel.text = "\(bitcoinDataModel.currencySymbol)\(bitcoinDataModel.priceChange[selectedTimeFrame]) (\(bitcoinDataModel.percentChange[selectedTimeFrame])%)"
+            priceChangeLabel.text = "-\(bitcoinDataModel.currencySymbol)\(bitcoinDataModel.priceChange[selectedTimeFrame]) (\(bitcoinDataModel.percentChange[selectedTimeFrame])%)"
             
         }
         // else display value in green
