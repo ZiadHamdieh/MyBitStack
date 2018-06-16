@@ -30,7 +30,9 @@ class ViewController: UIViewController {
     //MARK: - IBActions
     /*****************************************************************/
     @IBAction func timeFrameSegmentPressed(_ sender: UISegmentedControl) {
+        
         updateUI(selectedTimeFrame: timeFrameSegment.selectedSegmentIndex);
+        
     }
     
     
@@ -43,6 +45,9 @@ class ViewController: UIViewController {
         // set this class as the delegate for UIPicker
         currencyPicker.delegate = self
         currencyPicker.dataSource = self
+        
+        API_URL = BITCOIN_URL_ROOT + currencies[0]
+        getBitcoinPrice(url: API_URL)
         
     }
     
