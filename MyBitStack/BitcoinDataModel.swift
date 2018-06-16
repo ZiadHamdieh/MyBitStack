@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BitcoinDataModel {
+struct BitcoinDataModel {
     
     // [Price this hour, Price Today, Price this week ]
     var price : [Double] = [0.00, 0.00, 0.00]

@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     var API_URL = ""
     var chosenCurrency = ""
     
-    let bitcoinDataModel = BitcoinDataModel()
+    var bitcoinDataModel = BitcoinDataModel()
     
     
     @IBOutlet weak var percentageChangeLabel: UILabel!
@@ -116,7 +116,7 @@ class ViewController: UIViewController {
             
             priceLabel.textColor = .red
             percentageChangeLabel.textColor = .red
-            percentageChangeLabel.text = "-\(bitcoinDataModel.percentChange[selectedTimeFrame])%"
+            percentageChangeLabel.text = "\(bitcoinDataModel.percentChange[selectedTimeFrame])%"
             
         }
         // else display value in green
