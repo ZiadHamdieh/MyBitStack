@@ -92,12 +92,16 @@ class ViewController: UIViewController {
             }
             else if timeFrameSegment.isEnabledForSegment(at: 1) {
                 
+                let dayPriceResult = data["open"]["day"].double!
                 bitcoinDataModel.priceToday = dayPriceResult
                 bitcoinDataModel.percentChange = data["changes"]["percent"]["day"].doubleValue
                 
             }
             else if timeFrameSegment.isEnabledForSegment(at: 2) {
                 
+                let weekPriceResult = data["open"]["week"].double!
+                bitcoinDataModel.priceThisWeek = weekPriceResult
+                bitcoinDataModel.percentChange = data["changes"]["percent"]["week"].doubleValue
                 
             }
             
