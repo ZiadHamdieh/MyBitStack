@@ -12,7 +12,6 @@
 		9905F9A220BA8525003E372D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9905F9A120BA8525003E372D /* Assets.xcassets */; };
 		9905F9A520BA8525003E372D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9905F9A320BA8525003E372D /* LaunchScreen.storyboard */; };
 		99C98A8E20BA8C020027D7C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99C98A8D20BA8C020027D7C4 /* Main.storyboard */; };
-		99C98A9320BA92C30027D7C4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 99C98A9220BA92C30027D7C4 /* Info.plist */; };
 		99C98A9620BAA2790027D7C4 /* BitcoinDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C98A9520BAA2790027D7C4 /* BitcoinDataModel.swift */; };
 		F42AA48C62133D2DA50C4C5D /* Pods_MyBitStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03802BC1264DF7C567732828 /* Pods_MyBitStack.framework */; };
 /* End PBXBuildFile section */
@@ -153,7 +152,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Ziad Hamdieh";
 				TargetAttributes = {
 					9905F99620BA8524003E372D = {
@@ -184,7 +183,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99C98A9320BA92C30027D7C4 /* Info.plist in Resources */,
 				99C98A8E20BA8C020027D7C4 /* Main.storyboard in Resources */,
 				9905F9A520BA8525003E372D /* LaunchScreen.storyboard in Resources */,
 				9905F9A220BA8525003E372D /* Assets.xcassets in Resources */,

@@ -22,6 +22,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var percentageChangeLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var currencyPicker: UIPickerView!
+    @IBOutlet weak var timeFrameSegment: UISegmentedControl!
+    
+    
+    @IBAction func timeFrameSegmentPressed(_ sender: UISegmentedControl) {
+        
+    }
+    
+    
     
     let bitcoinDataModel = BitcoinDataModel()
     
@@ -56,6 +64,7 @@ class ViewController: UIViewController {
                     
                     let bitcoinJSON : JSON = JSON(response.result.value!)
                     self.updateBitcoinData(data: bitcoinJSON)
+                    print("\(bitcoinJSON)")
                     
                 }
                 else {
@@ -75,8 +84,23 @@ class ViewController: UIViewController {
         // optional binding used here to avoid forced unwrapping
         if let hourPriceResult = data["open"]["hour"].double {
             
-            bitcoinDataModel.priceThisHour = hourPriceResult
-            bitcoinDataModel.percentChange = data["changes"]["percent"]["hour"].doubleValue
+            if timeFrameSegment.isEnabledForSegment(at: 0) {
+             
+                bitcoinDataModel.priceThisHour = hourPriceResult
+                bitcoinDataModel.percentChange = data["changes"]["percent"]["hour"].doubleValue
+                
+            }
+            else if timeFrameSegment.isEnabledForSegment(at: 1) {
+                
+                bitcoinDataModel.priceToday = dayPriceResult
+                bitcoinDataModel.percentChange = data["changes"]["percent"]["day"].doubleValue
+                
+            }
+            else if timeFrameSegment.isEnabledForSegment(at: 2) {
+                
+                
+            }
+            
             bitcoinDataModel.currencySymbol = chosenCurrency
             updateUI()
             
