@@ -66,9 +66,9 @@
                                         <rect key="frame" x="65" y="696" width="260" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <segments>
-                                            <segment title="timeFrameSegment"/>
-                                            <segment title="Second"/>
-                                            <segment title=""/>
+                                            <segment title="This Hour"/>
+                                            <segment title="Today"/>
+                                            <segment title="This Week"/>
                                         </segments>
                                         <color key="tintColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
