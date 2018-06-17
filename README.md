@@ -1,7 +1,7 @@
 <img src="Logo/Logo.png" alt="logo" height="70" align="right">
 
 # MyBitStack - v2.0 
-### A Bitcoin Tracking iOS application
+### A Cyrptocurrency Tracking iOS application
 
 Single-View iOS application that uses bitcoinaverage.com's API to fetch data on the current value of the Bitcoin/Ethereum cryptocurrencies.
 
