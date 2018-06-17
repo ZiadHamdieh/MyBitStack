@@ -123,6 +123,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bitcoin" width="333" height="333"/>
+        <image name="bitcoin" width="666" height="666"/>
     </resources>
 </document>
