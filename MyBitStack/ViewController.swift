@@ -118,17 +118,17 @@ class ViewController: UIViewController {
         if let hourPriceResult = data["open"]["hour"].double, let weekPriceResult = data["open"]["week"].double,
             let dayPriceResult = data["open"]["day"].double {
             
-            cryptoCurrencyModel.price[0] = hourPriceResult
-            cryptoCurrencyModel.price[1] = dayPriceResult
-            cryptoCurrencyModel.price[2] = weekPriceResult
+            cryptoCurrencyModel.price[0] = hourPriceResult.rounded(toPlaces: 2)
+            cryptoCurrencyModel.price[1] = dayPriceResult.rounded(toPlaces: 2)
+            cryptoCurrencyModel.price[2] = weekPriceResult.rounded(toPlaces: 2)
             
-            cryptoCurrencyModel.priceChange[0] = abs(data["changes"]["price"]["hour"].doubleValue)
-            cryptoCurrencyModel.priceChange[1] = abs(data["changes"]["price"]["day"].doubleValue)
-            cryptoCurrencyModel.priceChange[2] = abs(data["changes"]["price"]["week"].doubleValue)
+            cryptoCurrencyModel.priceChange[0] = abs(data["changes"]["price"]["hour"].doubleValue).rounded(toPlaces: 2)
+            cryptoCurrencyModel.priceChange[1] = abs(data["changes"]["price"]["day"].doubleValue).rounded(toPlaces: 2)
+            cryptoCurrencyModel.priceChange[2] = abs(data["changes"]["price"]["week"].doubleValue).rounded(toPlaces: 2)
             
-            cryptoCurrencyModel.percentChange[0] = data["changes"]["percent"]["hour"].doubleValue
-            cryptoCurrencyModel.percentChange[1] = data["changes"]["percent"]["day"].doubleValue
-            cryptoCurrencyModel.percentChange[2] = data["changes"]["percent"]["week"].doubleValue
+            cryptoCurrencyModel.percentChange[0] = data["changes"]["percent"]["hour"].doubleValue.rounded(toPlaces: 2)
+            cryptoCurrencyModel.percentChange[1] = data["changes"]["percent"]["day"].doubleValue.rounded(toPlaces: 2)
+            cryptoCurrencyModel.percentChange[2] = data["changes"]["percent"]["week"].doubleValue.rounded(toPlaces: 2)
             
             cryptoCurrencyModel.currencySymbol = chosenCurrencySymbol
             
@@ -234,3 +234,19 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
 }
+
+extension Double {
+    
+    /// Rounds the double to decimal places value
+    func rounded(toPlaces places:Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
+        
+    }
+    
+}
+
+
+
+
+
