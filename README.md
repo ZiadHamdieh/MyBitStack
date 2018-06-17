@@ -10,7 +10,7 @@ Single-View iOS application that uses bitcoinaverage.com's API to fetch data on 
 * Choice of 19 currencies (including USD, CAD, EUR, GBP)
 * Price & Percentage increase/decrease since last hour
 
-#### New in this version
+#### New in v2.0
 * currency increase/decrease now shows as both percentage AND raw amount
 * Switch beween Bitcoin and Ethereum!
 * Toggle between hourly, daily, and weekly updates
