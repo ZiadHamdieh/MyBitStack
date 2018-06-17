@@ -61,6 +61,12 @@ class ViewController: UIViewController {
         
     }
     
+    //MARK: - iPhone X Compatibility
+    override func prefersHomeIndicatorAutoHidden() -> Bool
+    {
+        return false
+    }
+    
     //MARK: - View Lifecycle
     /*****************************************************************/
     
