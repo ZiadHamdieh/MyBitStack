@@ -12,7 +12,7 @@
 		9905F9A220BA8525003E372D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9905F9A120BA8525003E372D /* Assets.xcassets */; };
 		9905F9A520BA8525003E372D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9905F9A320BA8525003E372D /* LaunchScreen.storyboard */; };
 		99C98A8E20BA8C020027D7C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99C98A8D20BA8C020027D7C4 /* Main.storyboard */; };
-		99C98A9620BAA2790027D7C4 /* BitcoinDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C98A9520BAA2790027D7C4 /* BitcoinDataModel.swift */; };
+		99C98A9620BAA2790027D7C4 /* CryptoCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C98A9520BAA2790027D7C4 /* CryptoCurrencyModel.swift */; };
 		F42AA48C62133D2DA50C4C5D /* Pods_MyBitStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03802BC1264DF7C567732828 /* Pods_MyBitStack.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,7 +26,7 @@
 		9905F9A420BA8525003E372D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		99C98A8D20BA8C020027D7C4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		99C98A9220BA92C30027D7C4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		99C98A9520BAA2790027D7C4 /* BitcoinDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinDataModel.swift; sourceTree = "<group>"; };
+		99C98A9520BAA2790027D7C4 /* CryptoCurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCurrencyModel.swift; sourceTree = "<group>"; };
 		ED58E103E617859083C2F8E6 /* Pods-MyBitStack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyBitStack.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyBitStack/Pods-MyBitStack.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,7 +101,7 @@
 		99C98A9120BA90AE0027D7C4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				99C98A9520BAA2790027D7C4 /* BitcoinDataModel.swift */,
+				99C98A9520BAA2790027D7C4 /* CryptoCurrencyModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -241,7 +241,7 @@
 			files = (
 				9905F99D20BA8524003E372D /* ViewController.swift in Sources */,
 				9905F99B20BA8524003E372D /* AppDelegate.swift in Sources */,
-				99C98A9620BAA2790027D7C4 /* BitcoinDataModel.swift in Sources */,
+				99C98A9620BAA2790027D7C4 /* CryptoCurrencyModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

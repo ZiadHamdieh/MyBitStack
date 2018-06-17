@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     var CRYPTO_EXTENSION = "BTC"
     var API_URL = ""
     
-    var bitcoinDataModel = BitcoinDataModel()
+    var cryptoCurrencyModel = CryptoCurrencyModel()
     
     @IBOutlet weak var priceChangeLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
@@ -118,19 +118,19 @@ class ViewController: UIViewController {
         if let hourPriceResult = data["open"]["hour"].double, let weekPriceResult = data["open"]["week"].double,
             let dayPriceResult = data["open"]["day"].double {
             
-            bitcoinDataModel.price[0] = hourPriceResult
-            bitcoinDataModel.price[1] = dayPriceResult
-            bitcoinDataModel.price[2] = weekPriceResult
+            cryptoCurrencyModel.price[0] = hourPriceResult
+            cryptoCurrencyModel.price[1] = dayPriceResult
+            cryptoCurrencyModel.price[2] = weekPriceResult
             
-            bitcoinDataModel.priceChange[0] = abs(data["changes"]["price"]["hour"].doubleValue)
-            bitcoinDataModel.priceChange[1] = abs(data["changes"]["price"]["day"].doubleValue)
-            bitcoinDataModel.priceChange[2] = abs(data["changes"]["price"]["week"].doubleValue)
+            cryptoCurrencyModel.priceChange[0] = abs(data["changes"]["price"]["hour"].doubleValue)
+            cryptoCurrencyModel.priceChange[1] = abs(data["changes"]["price"]["day"].doubleValue)
+            cryptoCurrencyModel.priceChange[2] = abs(data["changes"]["price"]["week"].doubleValue)
             
-            bitcoinDataModel.percentChange[0] = data["changes"]["percent"]["hour"].doubleValue
-            bitcoinDataModel.percentChange[1] = data["changes"]["percent"]["day"].doubleValue
-            bitcoinDataModel.percentChange[2] = data["changes"]["percent"]["week"].doubleValue
+            cryptoCurrencyModel.percentChange[0] = data["changes"]["percent"]["hour"].doubleValue
+            cryptoCurrencyModel.percentChange[1] = data["changes"]["percent"]["day"].doubleValue
+            cryptoCurrencyModel.percentChange[2] = data["changes"]["percent"]["week"].doubleValue
             
-            bitcoinDataModel.currencySymbol = chosenCurrencySymbol
+            cryptoCurrencyModel.currencySymbol = chosenCurrencySymbol
             
             updateUI(selectedTimeFrame: timeFrameSegment.selectedSegmentIndex)
             
@@ -149,23 +149,23 @@ class ViewController: UIViewController {
     func updateUI(selectedTimeFrame: Int) {
         
         // if crypto currency prices have fallen since last time period, display in red
-        if bitcoinDataModel.percentChange[selectedTimeFrame] < 0 {
+        if cryptoCurrencyModel.percentChange[selectedTimeFrame] < 0 {
             
             priceLabel.textColor = .red
             priceChangeLabel.textColor = .red
-            priceChangeLabel.text = "-\(bitcoinDataModel.currencySymbol)\(bitcoinDataModel.priceChange[selectedTimeFrame]) (\(bitcoinDataModel.percentChange[selectedTimeFrame])%)"
+            priceChangeLabel.text = "-\(cryptoCurrencyModel.currencySymbol)\(cryptoCurrencyModel.priceChange[selectedTimeFrame]) (\(cryptoCurrencyModel.percentChange[selectedTimeFrame])%)"
             
         }
         // else display value in green
-        else if bitcoinDataModel.percentChange[selectedTimeFrame] > 0 {
+        else if cryptoCurrencyModel.percentChange[selectedTimeFrame] > 0 {
             
             priceLabel.textColor = .green
             priceChangeLabel.textColor = .green
-            priceChangeLabel.text = "+\(bitcoinDataModel.currencySymbol)\(bitcoinDataModel.priceChange[selectedTimeFrame]) (+\(bitcoinDataModel.percentChange[selectedTimeFrame])%)"
+            priceChangeLabel.text = "+\(cryptoCurrencyModel.currencySymbol)\(cryptoCurrencyModel.priceChange[selectedTimeFrame]) (+\(cryptoCurrencyModel.percentChange[selectedTimeFrame])%)"
             
         }
         
-        priceLabel.text = "\(bitcoinDataModel.currencySymbol)\(bitcoinDataModel.price[selectedTimeFrame])"
+        priceLabel.text = "\(cryptoCurrencyModel.currencySymbol)\(cryptoCurrencyModel.price[selectedTimeFrame])"
         
     }
     

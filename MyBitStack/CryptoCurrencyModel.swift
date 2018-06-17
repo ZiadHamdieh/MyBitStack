@@ -1,5 +1,5 @@
 //
-//  BitcoinDataModel.swift
+//  CryptoCurrencyDataModel.swift
 //  MyBitStack
 //
 //  Created by Ziad Hamdieh on 2018-05-27.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct BitcoinDataModel {
+struct CryptoCurrencyModel {
     
     // [Price this HOUR, Price TODAY, Price this WEEK]
     var price : [Double] = [0.00, 0.00, 0.00]
