@@ -57,7 +57,7 @@ class ViewController: UIViewController {
         }
         
         API_URL = URL_ROOT + CRYPTO_EXTENSION + chosenCurrency
-        getBitcoinPrice(url: API_URL)
+        getCryptoCurrencyPrice(url: API_URL)
         
     }
     
@@ -74,14 +74,14 @@ class ViewController: UIViewController {
         chosenCurrency = currencies[0]
         chosenCurrencySymbol = currencySymbols[0]
         API_URL = URL_ROOT + CRYPTO_EXTENSION + chosenCurrency
-        getBitcoinPrice(url: API_URL)
+        getCryptoCurrencyPrice(url: API_URL)
         
     }
     
     //MARK: - Networking
     /*****************************************************************/
     
-    func getBitcoinPrice(url: String) {
+    func getCryptoCurrencyPrice(url: String) {
         
         if API_URL == (URL_ROOT + CRYPTO_EXTENSION) {
             
@@ -95,14 +95,14 @@ class ViewController: UIViewController {
                 
                 if response.result.isSuccess {
                     
-                    let bitcoinJSON : JSON = JSON(response.result.value!)
-                    self.updateBitcoinData(data: bitcoinJSON)
-                    print("\(bitcoinJSON)")
+                    let cryptoCurrencyJSON : JSON = JSON(response.result.value!)
+                    self.updateCryptoCurrencyData(data: cryptoCurrencyJSON)
+                    print("\(cryptoCurrencyJSON)")
                     
                 }
                 else {
                     
-                    print("coult not get bitcoin data")
+                    print("coult not get cryptocurrency data")
                     self.priceLabel.text = "Fetch Error"
                     
                 }
@@ -113,7 +113,7 @@ class ViewController: UIViewController {
     //MARK: - JSON Parsing
     /*****************************************************************/
     
-    func updateBitcoinData(data: JSON) {
+    func updateCryptoCurrencyData(data: JSON) {
         // optional binding used here to avoid forced unwrapping
         if let hourPriceResult = data["open"]["hour"].double, let weekPriceResult = data["open"]["week"].double,
             let dayPriceResult = data["open"]["day"].double {
@@ -137,7 +137,7 @@ class ViewController: UIViewController {
         }
         else {
             
-            print("Bitcoin prices currently unavailable")
+            print("cryptocurrency prices currently unavailable")
             priceLabel.text = "Unavailable"
             
         }
@@ -146,10 +146,9 @@ class ViewController: UIViewController {
     //MARK: - UI Update
     /*****************************************************************/
     
-    
     func updateUI(selectedTimeFrame: Int) {
         
-        // if bitcoin prices have fallen since last time period, display in red
+        // if crypto currency prices have fallen since last time period, display in red
         if bitcoinDataModel.percentChange[selectedTimeFrame] < 0 {
             
             priceLabel.textColor = .red
@@ -205,7 +204,7 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         chosenCurrency = currencies[row]
         API_URL = URL_ROOT + CRYPTO_EXTENSION + chosenCurrency
         chosenCurrencySymbol = currencySymbols[row]
-        getBitcoinPrice(url: API_URL)
+        getCryptoCurrencyPrice(url: API_URL)
         
     }
     
