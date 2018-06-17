@@ -15,14 +15,13 @@ class ViewController: UIViewController {
     let currencies = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","ILS","INR","JPY","MXN","NOK","NZD","PLN","RUB","SEK","SGD","USD","ZAR"]
     let currencySymbols = ["$", "R$", "$", "¥", "€", "£", "$", "₪", "₹", "¥", "$", "kr", "$", "zł", "₽", "kr", "$", "$", "R"]
     var chosenCurrency = ""
+    var chosenCurrencySymbol = ""
     
     let URL_ROOT = "https://apiv2.bitcoinaverage.com/indices/global/ticker/"
     var CRYPTO_EXTENSION = "BTC"
     var API_URL = ""
     
     var bitcoinDataModel = BitcoinDataModel()
-    
-    
     
     @IBOutlet weak var priceChangeLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
@@ -56,7 +55,6 @@ class ViewController: UIViewController {
 
         }
         
-        print("CHOSEN CURRENCY IS \(chosenCurrency)")
         API_URL = URL_ROOT + CRYPTO_EXTENSION + chosenCurrency
         getBitcoinPrice(url: API_URL)
         
@@ -72,7 +70,8 @@ class ViewController: UIViewController {
         currencyPicker.delegate = self
         currencyPicker.dataSource = self
         
-        API_URL = URL_ROOT + CRYPTO_EXTENSION + currencies[0]
+        chosenCurrency = currencies[0]
+        API_URL = URL_ROOT + CRYPTO_EXTENSION + chosenCurrency
         getBitcoinPrice(url: API_URL)
         
     }
@@ -129,7 +128,7 @@ class ViewController: UIViewController {
             bitcoinDataModel.percentChange[1] = data["changes"]["percent"]["day"].doubleValue
             bitcoinDataModel.percentChange[2] = data["changes"]["percent"]["week"].doubleValue
             
-            bitcoinDataModel.currencySymbol = chosenCurrency
+            bitcoinDataModel.currencySymbol = chosenCurrencySymbol
             
             updateUI(selectedTimeFrame: timeFrameSegment.selectedSegmentIndex)
             
@@ -201,9 +200,9 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     // print the currency in the row currently selected within the UIPicker
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        print("CURRENCY = \(CRYPTO_EXTENSION)")
-        API_URL = URL_ROOT + CRYPTO_EXTENSION + currencies[row]
-        chosenCurrency = currencySymbols[row]
+        chosenCurrency = currencies[row]
+        API_URL = URL_ROOT + CRYPTO_EXTENSION + chosenCurrency
+        chosenCurrencySymbol = currencySymbols[row]
         getBitcoinPrice(url: API_URL)
         
     }
