@@ -14,9 +14,11 @@ class ViewController: UIViewController {
     
     let currencies = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","ILS","INR","JPY","MXN","NOK","NZD","PLN","RUB","SEK","SGD","USD","ZAR"]
     let currencySymbols = ["$", "R$", "$", "¥", "€", "£", "$", "₪", "₹", "¥", "$", "kr", "$", "zł", "₽", "kr", "$", "$", "R"]
-    let BITCOIN_URL_ROOT = "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTC"
-    var API_URL = ""
     var chosenCurrency = ""
+    
+    let URL_ROOT = "https://apiv2.bitcoinaverage.com/indices/global/ticker/"
+    var URL_EXTENSION = "BTC"
+    var API_URL = ""
     
     var bitcoinDataModel = BitcoinDataModel()
     
@@ -26,6 +28,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var currencyPicker: UIPickerView!
     @IBOutlet weak var timeFrameSegment: UISegmentedControl!
+    @IBOutlet weak var currencyLogo: UIImageView!
+    @IBOutlet weak var currencySwitch: UISwitch!
     
     //MARK: - IBActions
     /*****************************************************************/
@@ -35,6 +39,23 @@ class ViewController: UIViewController {
         
     }
     
+    @IBAction func currencySwitchPressed(_ sender: UISwitch) {
+        
+        // ethereum
+        if currencySwitch.isOn {
+            
+            URL_EXTENSION = "ETH"
+            currencyLogo.image = UIImage(named: "ethereum.png")
+
+        }
+        // bitcoin
+        else {
+
+            URL_EXTENSION = "BTC"
+            currencyLogo.image = UIImage(named: "bitcoin.png")
+
+        }
+    }
     
     //MARK: - View Lifecycle
     /*****************************************************************/
@@ -46,7 +67,7 @@ class ViewController: UIViewController {
         currencyPicker.delegate = self
         currencyPicker.dataSource = self
         
-        API_URL = BITCOIN_URL_ROOT + currencies[0]
+        API_URL = URL_ROOT + URL_EXTENSION + currencies[0]
         getBitcoinPrice(url: API_URL)
         
     }
@@ -56,7 +77,7 @@ class ViewController: UIViewController {
     
     func getBitcoinPrice(url: String) {
         
-        if API_URL == BITCOIN_URL_ROOT {
+        if API_URL == (URL_ROOT + URL_EXTENSION) {
             
             priceLabel.text = ""
             
@@ -175,7 +196,8 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     // print the currency in the row currently selected within the UIPicker
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        API_URL = BITCOIN_URL_ROOT + currencies[row]
+        print("CURRENCY = \(URL_EXTENSION)")
+        API_URL = URL_ROOT + URL_EXTENSION + currencies[row]
         chosenCurrency = currencySymbols[row]
         getBitcoinPrice(url: API_URL)
         

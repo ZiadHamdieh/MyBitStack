@@ -44,6 +44,14 @@
                                                     <constraint firstAttribute="width" constant="240" id="lcv-mV-o6W"/>
                                                 </constraints>
                                             </imageView>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Z7r-Bt-Oou">
+                                                <rect key="frame" x="320" y="92" width="49" height="31"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="onTintColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <action selector="currencySwitchPressed:" destination="BYZ-38-t0r" eventType="valueChanged" id="ZYK-7b-Ef7"/>
+                                                </connections>
+                                            </switch>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="txK-OS-RfU" firstAttribute="centerX" secondItem="c1V-SU-qjY" secondAttribute="centerX" id="acj-f6-rj6"/>
@@ -101,7 +109,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="currencyLogo" destination="txK-OS-RfU" id="Umk-2A-jPP"/>
                         <outlet property="currencyPicker" destination="ZGz-pe-AwG" id="h6L-ys-ODM"/>
+                        <outlet property="currencySwitch" destination="Z7r-Bt-Oou" id="g2c-XB-HBi"/>
                         <outlet property="priceChangeLabel" destination="Vsb-e0-8MA" id="tyb-Un-Psq"/>
                         <outlet property="priceLabel" destination="Jg7-Dt-rnc" id="SgM-Rx-TZl"/>
                         <outlet property="timeFrameSegment" destination="dXL-ln-gMM" id="0Ng-TK-vAw"/>
