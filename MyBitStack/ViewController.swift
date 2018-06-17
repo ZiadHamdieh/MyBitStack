@@ -74,6 +74,7 @@ class ViewController: UIViewController {
         chosenCurrency = currencies[0]
         chosenCurrencySymbol = currencySymbols[0]
         API_URL = URL_ROOT + CRYPTO_EXTENSION + chosenCurrency
+        
         getCryptoCurrencyPrice(url: API_URL)
         
     }
@@ -115,7 +116,8 @@ class ViewController: UIViewController {
     
     func updateCryptoCurrencyData(data: JSON) {
         // optional binding used here to avoid forced unwrapping
-        if let hourPriceResult = data["open"]["hour"].double, let weekPriceResult = data["open"]["week"].double,
+        if  let hourPriceResult = data["open"]["hour"].double,
+            let weekPriceResult = data["open"]["week"].double,
             let dayPriceResult = data["open"]["day"].double {
             
             cryptoCurrencyModel.price[0] = hourPriceResult.rounded(toPlaces: 2)
@@ -153,7 +155,9 @@ class ViewController: UIViewController {
             
             priceLabel.textColor = .red
             priceChangeLabel.textColor = .red
-            priceChangeLabel.text = "-\(cryptoCurrencyModel.currencySymbol)\(cryptoCurrencyModel.priceChange[selectedTimeFrame]) (\(cryptoCurrencyModel.percentChange[selectedTimeFrame])%)"
+            priceChangeLabel.text = "-\(cryptoCurrencyModel.currencySymbol)" +
+                                    "\(cryptoCurrencyModel.priceChange[selectedTimeFrame]) " +
+                                    "(\(cryptoCurrencyModel.percentChange[selectedTimeFrame])%)"
             
         }
         // else display value in green
@@ -161,20 +165,23 @@ class ViewController: UIViewController {
             
             priceLabel.textColor = .green
             priceChangeLabel.textColor = .green
-            priceChangeLabel.text = "+\(cryptoCurrencyModel.currencySymbol)\(cryptoCurrencyModel.priceChange[selectedTimeFrame]) (+\(cryptoCurrencyModel.percentChange[selectedTimeFrame])%)"
+            priceChangeLabel.text = "+\(cryptoCurrencyModel.currencySymbol)" +
+                                    "\(cryptoCurrencyModel.priceChange[selectedTimeFrame]) " +
+                                    "(+\(cryptoCurrencyModel.percentChange[selectedTimeFrame])%)"
             
         }
         
-        priceLabel.text = "\(cryptoCurrencyModel.currencySymbol)\(cryptoCurrencyModel.price[selectedTimeFrame])"
+        priceLabel.text = "\(cryptoCurrencyModel.currencySymbol)" +
+                          "\(cryptoCurrencyModel.price[selectedTimeFrame])"
         
     }
     
 }
 
-//MARK: - Protocol Delegates
+//MARK: - Extensions
 /*****************************************************************/
 
-extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+extension ViewController: UIPickerViewDataSource {
     
     // returns the number of columns in the UIPicker
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -190,6 +197,10 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         return currencies.count
         
     }
+    
+}
+
+extension ViewController: UIPickerViewDelegate {
     
     // place each element in the currency array into its respective row within the UIPicker
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -237,7 +248,7 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
 
 extension Double {
     
-    /// Rounds the double to decimal places value
+    /// Rounds a double to selected # of decimal places
     func rounded(toPlaces places:Int) -> Double {
         let divisor = pow(10.0, Double(places))
         return (self * divisor).rounded() / divisor
