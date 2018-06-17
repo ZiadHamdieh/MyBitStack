@@ -12,8 +12,10 @@ import SwiftyJSON
 
 class ViewController: UIViewController {
     
-    let currencies = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","ILS","INR","JPY","MXN","NOK","NZD","PLN","RUB","SEK","SGD","USD","ZAR"]
-    let currencySymbols = ["$", "R$", "$", "¥", "€", "£", "$", "₪", "₹", "¥", "$", "kr", "$", "zł", "₽", "kr", "$", "$", "R"]
+    let currencies = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","ILS","INR",
+                      "JPY","MXN","NOK","NZD","PLN","RUB","SEK","SGD","USD","ZAR"]
+    let currencySymbols = ["$", "R$", "$", "¥", "€", "£", "$", "₪", "₹", "¥",
+                           "$", "kr", "$", "zł", "₽", "kr", "$", "$", "R"]
     var chosenCurrency = ""
     var chosenCurrencySymbol = ""
     
@@ -47,9 +49,7 @@ class ViewController: UIViewController {
             CRYPTO_EXTENSION = "ETH"
             currencyLogo.image = UIImage(named: "ethereum.png")
 
-        }
-        // bitcoin
-        else {
+        } else {
 
             CRYPTO_EXTENSION = "BTC"
             currencyLogo.image = UIImage(named: "bitcoin.png")
@@ -88,8 +88,7 @@ class ViewController: UIViewController {
             
             priceLabel.text = ""
             
-        }
-        else {
+        } else {
             
             Alamofire.request(url, method: .get).responseJSON {
                 response in
@@ -100,8 +99,7 @@ class ViewController: UIViewController {
                     self.updateCryptoCurrencyData(data: cryptoCurrencyJSON)
                     print("\(cryptoCurrencyJSON)")
                     
-                }
-                else {
+                } else {
                     
                     print("coult not get cryptocurrency data")
                     self.priceLabel.text = "Fetch Error"
@@ -136,8 +134,7 @@ class ViewController: UIViewController {
             
             updateUI(selectedTimeFrame: timeFrameSegment.selectedSegmentIndex)
             
-        }
-        else {
+        } else {
             
             print("cryptocurrency prices currently unavailable")
             priceLabel.text = "Unavailable"
@@ -159,9 +156,7 @@ class ViewController: UIViewController {
                                     "\(cryptoCurrencyModel.priceChange[selectedTimeFrame]) " +
                                     "(\(cryptoCurrencyModel.percentChange[selectedTimeFrame])%)"
             
-        }
-        // else display value in green
-        else if cryptoCurrencyModel.percentChange[selectedTimeFrame] > 0 {
+        } else if cryptoCurrencyModel.percentChange[selectedTimeFrame] > 0 {
             
             priceLabel.textColor = .green
             priceChangeLabel.textColor = .green
@@ -228,8 +223,7 @@ extension ViewController: UIPickerViewDelegate {
             
             label = view
             
-        }
-        else {
+        } else {
             
             label = UILabel()
             
@@ -256,8 +250,3 @@ extension Double {
     }
     
 }
-
-
-
-
-
