@@ -22,8 +22,8 @@ Single-View iOS application that uses bitcoinaverage.com's API to fetch data on 
 * UI improvements
 
 #### Screenshots
-<img src="Screenshots/increase.png" width="40%"> <img src="Screenshots/decrease.png" width="40%" align="right">
-<img src="Screenshots/error.png" width="40%">
+<img src="Screenshots/increase.png" width="40%"> <img src="Screenshots/ethereum.png" width="40%" align="right">
+<img src="Screenshots/decrease.png" width="40%"> <img src="Screenshots/error.png" width="40%" align="right">
 
 #### Instructions
 
