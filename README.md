@@ -1,23 +1,29 @@
 <img src="Logo/Logo.png" alt="logo" height="70" align="right">
 
-# MyBitStack - v1.0 
+# MyBitStack - v2.0 
 ### A Bitcoin Tracking iOS application
 
-Single-View iOS application that uses bitcoinaverage.com's API to fetch data on the current value of the Bitcoin cryptocurrency.
+Single-View iOS application that uses bitcoinaverage.com's API to fetch data on the current value of the Bitcoin/Ethereum cryptocurrencies.
 
 #### Features
-* Real-time updates on current value of Bitcoin
+* Real-time updates on current value of Bitcoin/Ethereum
 * Choice of 19 currencies (including USD, CAD, EUR, GBP)
-* Percentage increase/decrease since last hour
+* Price & Percentage increase/decrease since last hour
+
+#### New in this version
+* currency increase/decrease now shows as both percentage AND raw amount
+* Switch beween Bitcoin and Ethereum!
+* Toggle between hourly, daily, and weekly updates
+
+#### Upcoming Features
+* Quick-select a currency (e.g. CAD) with one click
+* Preferred currency user defaults (core data)
+* splash screeen
+* UI improvements
 
 #### Screenshots
 <img src="Screenshots/increase.png" width="40%"> <img src="Screenshots/decrease.png" width="40%" align="right">
 <img src="Screenshots/error.png" width="40%">
-
-#### Upcoming Features
-* Swap between Bitcoin and Ethereum
-* Toggle between hourly, daily, and weekly updates
-* Quick-select a currency (e.g. CAD) with one click
 
 #### Instructions
 
