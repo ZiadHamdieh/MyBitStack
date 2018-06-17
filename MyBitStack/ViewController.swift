@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     var chosenCurrency = ""
     
     let URL_ROOT = "https://apiv2.bitcoinaverage.com/indices/global/ticker/"
-    var URL_EXTENSION = "BTC"
+    var CRYPTO_EXTENSION = "BTC"
     var API_URL = ""
     
     var bitcoinDataModel = BitcoinDataModel()
@@ -44,17 +44,22 @@ class ViewController: UIViewController {
         // ethereum
         if currencySwitch.isOn {
             
-            URL_EXTENSION = "ETH"
+            CRYPTO_EXTENSION = "ETH"
             currencyLogo.image = UIImage(named: "ethereum.png")
 
         }
         // bitcoin
         else {
 
-            URL_EXTENSION = "BTC"
+            CRYPTO_EXTENSION = "BTC"
             currencyLogo.image = UIImage(named: "bitcoin.png")
 
         }
+        
+        print("CHOSEN CURRENCY IS \(chosenCurrency)")
+        API_URL = URL_ROOT + CRYPTO_EXTENSION + chosenCurrency
+        getBitcoinPrice(url: API_URL)
+        
     }
     
     //MARK: - View Lifecycle
@@ -67,7 +72,7 @@ class ViewController: UIViewController {
         currencyPicker.delegate = self
         currencyPicker.dataSource = self
         
-        API_URL = URL_ROOT + URL_EXTENSION + currencies[0]
+        API_URL = URL_ROOT + CRYPTO_EXTENSION + currencies[0]
         getBitcoinPrice(url: API_URL)
         
     }
@@ -77,7 +82,7 @@ class ViewController: UIViewController {
     
     func getBitcoinPrice(url: String) {
         
-        if API_URL == (URL_ROOT + URL_EXTENSION) {
+        if API_URL == (URL_ROOT + CRYPTO_EXTENSION) {
             
             priceLabel.text = ""
             
@@ -196,8 +201,8 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     // print the currency in the row currently selected within the UIPicker
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        print("CURRENCY = \(URL_EXTENSION)")
-        API_URL = URL_ROOT + URL_EXTENSION + currencies[row]
+        print("CURRENCY = \(CRYPTO_EXTENSION)")
+        API_URL = URL_ROOT + CRYPTO_EXTENSION + currencies[row]
         chosenCurrency = currencySymbols[row]
         getBitcoinPrice(url: API_URL)
         
