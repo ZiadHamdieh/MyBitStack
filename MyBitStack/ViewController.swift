@@ -45,26 +45,17 @@ class ViewController: UIViewController {
         
         // ethereum
         if currencySwitch.isOn {
-            
             CRYPTO_EXTENSION = "ETH"
             currencyLogo.image = UIImage(named: "ethereum.png")
-
         } else {
-
             CRYPTO_EXTENSION = "BTC"
             currencyLogo.image = UIImage(named: "bitcoin.png")
-
         }
         
         API_URL = URL_ROOT + CRYPTO_EXTENSION + chosenCurrency
+        UserDefaults.standard.set(currencySwitch, forKey: "preferredCryptoCurrency")
         getCryptoCurrencyPrice(url: API_URL)
         
-    }
-    
-    //MARK: - iPhone X Compatibility
-    override func prefersHomeIndicatorAutoHidden() -> Bool
-    {
-        return false
     }
     
     //MARK: - View Lifecycle
@@ -85,34 +76,34 @@ class ViewController: UIViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if let x = UserDefaults.standard.object(forKey: "preferredCryptoCurrency") as? UISwitch {
+            currencySwitch = x
+        }
+    }
+    
     //MARK: - Networking
     /*****************************************************************/
     
     func getCryptoCurrencyPrice(url: String) {
         
         if API_URL == (URL_ROOT + CRYPTO_EXTENSION) {
-            
             priceLabel.text = ""
-            
         } else {
-            
             Alamofire.request(url, method: .get).responseJSON {
                 response in
                 
                 if response.result.isSuccess {
-                    
                     let cryptoCurrencyJSON : JSON = JSON(response.result.value!)
                     self.updateCryptoCurrencyData(data: cryptoCurrencyJSON)
                     print("\(cryptoCurrencyJSON)")
-                    
                 } else {
-                    
                     print("coult not get cryptocurrency data")
                     self.priceLabel.text = "Fetch Error"
-                    
                 }
             }
         }
+        
     }
 
     //MARK: - JSON Parsing
@@ -155,13 +146,13 @@ class ViewController: UIViewController {
         
         // if crypto currency prices have fallen since last time period, display in red
         if cryptoCurrencyModel.percentChange[selectedTimeFrame] < 0 {
-            
+        
             priceLabel.textColor = .red
             priceChangeLabel.textColor = .red
             priceChangeLabel.text = "-\(cryptoCurrencyModel.currencySymbol)" +
                                     "\(cryptoCurrencyModel.priceChange[selectedTimeFrame]) " +
                                     "(\(cryptoCurrencyModel.percentChange[selectedTimeFrame])%)"
-            
+        
         } else if cryptoCurrencyModel.percentChange[selectedTimeFrame] > 0 {
             
             priceLabel.textColor = .green
@@ -176,7 +167,6 @@ class ViewController: UIViewController {
                           "\(cryptoCurrencyModel.price[selectedTimeFrame])"
         
     }
-    
 }
 
 //MARK: - Extensions
@@ -205,9 +195,7 @@ extension ViewController: UIPickerViewDelegate {
     
     // place each element in the currency array into its respective row within the UIPicker
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
         return currencies[row]
-        
     }
     
     // print the currency in the row currently selected within the UIPicker
@@ -226,13 +214,9 @@ extension ViewController: UIPickerViewDelegate {
         var label : UILabel
         
         if let view = view as? UILabel {
-            
             label = view
-            
         } else {
-            
             label = UILabel()
-            
         }
         
         label.textColor = .white
@@ -241,7 +225,6 @@ extension ViewController: UIPickerViewDelegate {
         label.text = currencies[row]
         
         return label
-        
     }
     
 }
@@ -252,7 +235,6 @@ extension Double {
     func rounded(toPlaces places:Int) -> Double {
         let divisor = pow(10.0, Double(places))
         return (self * divisor).rounded() / divisor
-        
     }
     
 }
