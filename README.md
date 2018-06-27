@@ -18,7 +18,7 @@ Single-View iOS application that uses bitcoinaverage.com's API to fetch data on 
 #### Upcoming Features
 * Quick-select a currency (e.g. CAD, USD, EUR) with one click
 * Setting screen for user defaults
-* splash screeen
+* Splash screeen
 * UI improvements
 
 #### Screenshots
