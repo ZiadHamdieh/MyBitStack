@@ -12,7 +12,7 @@ Single-View iOS application that uses bitcoinaverage.com's API to fetch data on 
 
 #### New in v2.0
 * currency increase/decrease now shows as both percentage AND raw amount
-* Switch beween Bitcoin and Ethereum!
+* Toggle beween Bitcoin and Ethereum!
 * Toggle between hourly, daily, and weekly updates
 
 #### Upcoming Features
