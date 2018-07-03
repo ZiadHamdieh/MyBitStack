@@ -31,4 +31,4 @@ To download this app onto your device, simply download this repository to your l
 
 
 #### Credits
-I'd like to extend a thank you to LondonAppBrewery's Angela Yu for providing some of the knowledge used in this project!
+Special thanks to LondonAppBrewery's Angela Yu for providing some of the knowledge used in this project!
