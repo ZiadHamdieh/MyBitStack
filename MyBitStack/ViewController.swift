@@ -76,6 +76,7 @@ class ViewController: UIViewController {
         
     }
     
+    
     /*
     override func viewDidAppear(_ animated: Bool) {
         if let x = UserDefaults.standard.object(forKey: "preferredCryptoCurrency") as? UISwitch {
