@@ -32,32 +32,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var currencyLogo: UIImageView!
     @IBOutlet weak var currencySwitch: UISwitch!
     
-    //MARK: - IBActions
-    /*****************************************************************/
-    
-    @IBAction func timeFrameSegmentPressed(_ sender: UISegmentedControl) {
-        
-        updateUI(selectedTimeFrame: timeFrameSegment.selectedSegmentIndex);
-        
-    }
-    
-    @IBAction func currencySwitchPressed(_ sender: UISwitch) {
-        
-        // ethereum
-        if currencySwitch.isOn {
-            CRYPTO_EXTENSION = "ETH"
-            currencyLogo.image = UIImage(named: "ethereum.png")
-        } else {
-            CRYPTO_EXTENSION = "BTC"
-            currencyLogo.image = UIImage(named: "bitcoin.png")
-        }
-        
-        API_URL = URL_ROOT + CRYPTO_EXTENSION + chosenCurrency
-        UserDefaults.standard.set(currencySwitch, forKey: "preferredCryptoCurrency")
-        getCryptoCurrencyPrice(url: API_URL)
-        
-    }
-    
     //MARK: - View Lifecycle
     /*****************************************************************/
     
@@ -170,7 +144,35 @@ class ViewController: UIViewController {
                           "\(cryptoCurrencyModel.price[selectedTimeFrame])"
         
     }
+    
+    //MARK: - IBActions
+    /*****************************************************************/
+    
+    @IBAction func timeFrameSegmentPressed(_ sender: UISegmentedControl) {
+        
+        updateUI(selectedTimeFrame: timeFrameSegment.selectedSegmentIndex);
+        
+    }
+    
+    @IBAction func currencySwitchPressed(_ sender: UISwitch) {
+        
+        // ethereum
+        if currencySwitch.isOn {
+            CRYPTO_EXTENSION = "ETH"
+            currencyLogo.image = UIImage(named: "ethereum.png")
+        } else {
+            CRYPTO_EXTENSION = "BTC"
+            currencyLogo.image = UIImage(named: "bitcoin.png")
+        }
+        
+        API_URL = URL_ROOT + CRYPTO_EXTENSION + chosenCurrency
+        UserDefaults.standard.set(currencySwitch, forKey: "preferredCryptoCurrency")
+        getCryptoCurrencyPrice(url: API_URL)
+        
+    }
+    
 }
+
 
 //MARK: - Extensions
 /*****************************************************************/
