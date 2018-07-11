@@ -28,7 +28,3 @@ Single-View iOS application that uses bitcoinaverage.com's API to fetch data on 
 #### Instructions
 
 To download this app onto your device, simply download this repository to your local machine, open it with XCode and run it on your device.
-
-
-#### Credits
-Special thanks to LondonAppBrewery's Angela Yu for providing some of the knowledge used in this project!
