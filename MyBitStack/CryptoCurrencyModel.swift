@@ -6,8 +6,6 @@
 //  Copyright © 2018 Ziad Hamdieh. All rights reserved.
 //
 
-import UIKit
-
 struct CryptoCurrencyModel {
     
     // [Price this HOUR, Price TODAY, Price this WEEK]
