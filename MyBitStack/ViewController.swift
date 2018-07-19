@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     
     let currencies = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","ILS","INR",
                       "JPY","MXN","NOK","NZD","PLN","RUB","SEK","SGD","USD","ZAR"]
-    let currencySymbols = ["$", "R$", "$", "¥", "€", "£", "$", "₪", "₹", "¥",
+    let currencySymbols = ["$", "R$", "C$", "¥", "€", "£", "$", "₪", "₹", "¥",
                            "$", "kr", "$", "zł", "₽", "kr", "$", "$", "R"]
     var chosenCurrency = ""
     var chosenCurrencySymbol = ""
