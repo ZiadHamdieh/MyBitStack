@@ -8,16 +8,16 @@
 
 struct CryptoCurrencyModel {
     
-    // [Price this HOUR, Price TODAY, Price this WEEK]
+    var currencySymbol = ""
+    
+    /* [Price this HOUR, Price TODAY, Price this WEEK] */
     var price = [0.00, 0.00, 0.00]
     
-    // [Price change this HOUR, Price change TODAY, Price change this WEEK]
+    /* [Price change this HOUR, Price change TODAY, Price change this WEEK] */
     var priceChange = [0.00, 0.00, 0,00]
     
-    // [% change this HOUR, % change TODAY, % change this WEEK]
+    /* [% change this HOUR, % change TODAY, % change this WEEK] */
     var percentChange = [0.00, 0.00, 0.00]
     
-    var currencySymbol = ""
-
 }
 
