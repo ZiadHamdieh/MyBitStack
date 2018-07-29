@@ -26,5 +26,4 @@ Single-View iOS application that uses bitcoinaverage.com's API to fetch data on 
 <img src="Screenshots/decrease.png" width="40%"> <img src="Screenshots/error.png" width="40%" align="right">
 
 #### Instructions
-
 To download this app onto your device, simply download this repository to your local machine, open it with XCode and run it on your device.
