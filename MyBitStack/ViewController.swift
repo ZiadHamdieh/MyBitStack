@@ -38,7 +38,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // set this class as the delegate for UIPicker
         currencyPicker.delegate = self
         currencyPicker.dataSource = self
         
@@ -49,15 +48,6 @@ class ViewController: UIViewController {
         getCryptoCurrencyPrice(url: API_URL)
         
     }
-    
-    
-    /*
-    override func viewDidAppear(_ animated: Bool) {
-        if let x = UserDefaults.standard.object(forKey: "preferredCryptoCurrency") as? UISwitch {
-            currencySwitch = x
-        }
-    }
-    */
     
     //MARK: - Networking
     /*****************************************************************/
