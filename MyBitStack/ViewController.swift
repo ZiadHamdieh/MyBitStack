@@ -12,18 +12,19 @@ import SwiftyJSON
 
 class ViewController: UIViewController {
     
+    var cryptoCurrencyModel = CryptoCurrencyModel()
+    
+    /* API variables */ 
+    let URL_ROOT = "https://apiv2.bitcoinaverage.com/indices/global/ticker/"
+    var CRYPTO_EXTENSION = "BTC"
+    var API_URL = ""
+    
     let currencies = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","ILS","INR",
                       "JPY","MXN","NOK","NZD","PLN","RUB","SEK","SGD","USD","ZAR"]
     let currencySymbols = ["$", "R$", "C$", "¥", "€", "£", "$", "₪", "₹", "¥",
                            "$", "kr", "$", "zł", "₽", "kr", "$", "$", "R"]
     var chosenCurrency = ""
     var chosenCurrencySymbol = ""
-    
-    let URL_ROOT = "https://apiv2.bitcoinaverage.com/indices/global/ticker/"
-    var CRYPTO_EXTENSION = "BTC"
-    var API_URL = ""
-    
-    var cryptoCurrencyModel = CryptoCurrencyModel()
     
     @IBOutlet weak var priceChangeLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
@@ -111,7 +112,7 @@ class ViewController: UIViewController {
     
     func updateUI(selectedTimeFrame: Int) {
         
-        // if crypto currency prices have fallen since last time period, display in red
+        /* if crypto currency prices have fallen since last time period, display in red */
         if cryptoCurrencyModel.percentChange[selectedTimeFrame] < 0 {
         
             priceLabel.textColor = .red
@@ -169,7 +170,7 @@ class ViewController: UIViewController {
 
 extension ViewController: UIPickerViewDataSource {
     
-    // returns the number of columns in the UIPicker
+    /* returns the number of columns in the UIPicker */
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         
         return 1
