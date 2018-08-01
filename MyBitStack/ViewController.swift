@@ -177,8 +177,7 @@ extension ViewController: UIPickerViewDataSource {
         
     }
     
-    // number of rows in the UIPicker is equal to the number of elements in the
-    // currency array
+    /* number of rows in the UIPicker is equal to the number of elements in the currency array */
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
         return currencies.count
@@ -189,12 +188,12 @@ extension ViewController: UIPickerViewDataSource {
 
 extension ViewController: UIPickerViewDelegate {
     
-    // place each element in the currency array into its respective row within the UIPicker
+    /* place each element in the currency array into its respective row within the UIPicker */
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return currencies[row]
     }
     
-    // print the currency in the row currently selected within the UIPicker
+    /* print the currency in the row currently selected within the UIPicker */
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         chosenCurrency = currencies[row]
@@ -204,7 +203,7 @@ extension ViewController: UIPickerViewDelegate {
         
     }
     
-    // change color of each row to white
+    /* change color of each row to white */
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         
         var label : UILabel
@@ -227,7 +226,7 @@ extension ViewController: UIPickerViewDelegate {
 
 extension Double {
     
-    /// Rounds a double to selected # of decimal places
+    /* Rounds a double to selected # of decimal places */
     func rounded(toPlaces places:Int) -> Double {
         let divisor = pow(10.0, Double(places))
         return (self * divisor).rounded() / divisor
