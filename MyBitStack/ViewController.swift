@@ -147,7 +147,7 @@ class ViewController: UIViewController {
     
     @IBAction func currencySwitchPressed(_ sender: UISwitch) {
         
-        // ethereum
+        /* ETH - Ethereum */
         if currencySwitch.isOn {
             CRYPTO_EXTENSION = "ETH"
             currencyLogo.image = UIImage(named: "ethereum.png")
