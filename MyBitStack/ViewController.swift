@@ -152,6 +152,7 @@ class ViewController: UIViewController {
             CRYPTO_EXTENSION = "ETH"
             currencyLogo.image = UIImage(named: "ethereum.png")
         } else {
+        /* BTC - Bitcoin */
             CRYPTO_EXTENSION = "BTC"
             currencyLogo.image = UIImage(named: "bitcoin.png")
         }
