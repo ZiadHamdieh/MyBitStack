@@ -173,16 +173,12 @@ extension ViewController: UIPickerViewDataSource {
     
     /* returns the number of columns in the UIPicker */
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        
-        return 1
-        
+        return 1    
     }
     
     /* number of rows in the UIPicker is equal to the number of elements in the currency array */
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        
-        return currencies.count
-        
+        return currencies.count     
     }
     
 }
@@ -226,7 +222,6 @@ extension ViewController: UIPickerViewDelegate {
 }
 
 extension Double {
-    
     /* Rounds a double to selected # of decimal places */
     func rounded(toPlaces places:Int) -> Double {
         let divisor = pow(10.0, Double(places))
