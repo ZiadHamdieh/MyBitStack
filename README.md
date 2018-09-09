@@ -5,6 +5,7 @@
 
 Single-View iOS application that uses bitcoinaverage.com's API to fetch data on the current value of the Bitcoin/Ethereum cryptocurrencies.
 
+
 #### Features
 * Real-time updates on current value of Bitcoin/Ethereum
 * Choice of 19 currencies (including USD, CAD, EUR, GBP)
